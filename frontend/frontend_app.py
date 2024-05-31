@@ -25,7 +25,8 @@ def calculate():
         return "Invalid input. Please enter numeric values.", 400
 
     try:
-        response = requests.post('http://flask-backend:5000/add', json={'num1': num1, 'num2': num2})
+        cert_path = r"D:\deploy_test\flask_all\frontend\flask.crt"
+        response = requests.post('https://127.0.0.1:5000/add', json={'num1': num1, 'num2': num2}, verify=cert_path)
         response.raise_for_status()
         result = response.json().get('result')
     except requests.RequestException as e:
